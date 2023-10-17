@@ -3,6 +3,12 @@
 Durée du laboratoire: 4 périodes
 
 A rendre sur Cyberlearn (code source) ainsi qu'une version imprimée.
+
+### Dans le rapport:
+- Une modélisation UML de notre programme
+- Choix de conception
+- Code source aussi a imprimer dans le rapport
+
 ## Objectifs pédagogiques
 - Concevoir des classes avec le principe d'encapsulation pour assurer l'intégrité des données et minimiser les dépendances
 - Savoir lancer des exceptions en cas de paramètres non valides
