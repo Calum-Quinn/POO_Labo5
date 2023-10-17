@@ -24,3 +24,50 @@ Il faut:
 
 1. Implémenter cette classe.
 2. Ecrire un programme de test prenant en argument les tailles N1, M1, N2, M2 de deux matrices ainsi qu'un module n et effectuant les opérations sur une matrice N1 × M1 et N2 × M2 de manière à produire un résultat semblable à
+The modulus is 5
+
+one:
+
+1 3 1 1 
+
+3 2 4 2 
+
+1 0 1 0 
+
+
+two:
+
+1 4 2 3 2 
+
+0 1 0 4 2 
+
+0 0 2 0 2 
+
+
+one + two:
+
+2 2 3 4 2 
+
+3 3 4 1 2 
+
+1 0 3 0 2 
+
+
+one - two:
+
+0 4 4 3 3 
+
+3 1 4 3 3 
+
+1 0 4 0 3 
+
+one x two:
+
+1 2 2 3 0 
+
+0 2 0 3 0 
+
+0 0 2 0 0 
+
+3. Factoriser le code commun aux différentes opérations (addition, soustraction et multiplication) de manière à ce qu'il soit possible d'en ajouter de nouvelles ultérieurement. Définir des objets représentant l'opération à effectuer sur les éléments des matrices opérandes et ceci sans utiliser de structures de contrôle (ifs, switchs...).
+4. N'hésitez pas à tester aussi les cas limites.
