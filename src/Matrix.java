@@ -16,6 +16,7 @@ public class Matrix {
     private Matrix() {
         height = 0;
         width = 0;
+        values = new ArrayList<ArrayList<Integer>>();
     }
 
     // Constructor with random numbers
@@ -37,7 +38,7 @@ public class Matrix {
         this.height = height;
         this.width = width;
         this.maximum = maximum;
-        this.values.addAll(values);
+        this.values = values;
     }
 
     public int getHeight() {
@@ -71,7 +72,7 @@ public class Matrix {
                     result.append(", ");
                 }
             }
-            result.append("]");
+            result.append("]\n");
         }
 
         return result.toString();
@@ -124,9 +125,10 @@ public class Matrix {
         return result;
     }
 
+    // General operation function for adding, subtracting and multiplying
     private Matrix operation(String operation, Matrix other) {
 
-        Matrix result = new Matrix();
+        Matrix result = newMatrix(this,other);
 
         // Apply the correct operation to each number
         for (int i = 0; i < Math.min(this.getHeight(),other.getHeight()); ++i) {
@@ -150,9 +152,13 @@ public class Matrix {
     // Add two Matrices together
     public Matrix add(Matrix other){
 
+        if (this.maximum != other.maximum) {
+            throw new RuntimeException("Different modulus'");
+        }
+
         Matrix result = newMatrix(this,other);
 
-        result = result.operation("add",other);
+        result = this.operation("add",other);
 
         return result;
     }
@@ -160,9 +166,13 @@ public class Matrix {
     // Subtract a Matrix from another
     public Matrix subtract(Matrix other){
 
-        Matrix result = new Matrix();
+        if (this.maximum != other.maximum) {
+            throw new RuntimeException("Different modulus'");
+        }
 
-        result = result.operation("sub",other);
+        Matrix result = newMatrix(this,other);
+
+        result = this.operation("sub",other);
 
         return result;
     }
@@ -170,9 +180,13 @@ public class Matrix {
     // Multiply two Matrices together
     public Matrix multiply(Matrix other){
 
-        Matrix result = new Matrix();
+        if (this.maximum != other.maximum) {
+            throw new RuntimeException("Different modulus'");
+        }
 
-        result = result.operation("mul",other);
+        Matrix result = newMatrix(this,other);
+
+        result = this.operation("mul",other);
 
         return result;
     }
