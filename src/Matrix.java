@@ -124,16 +124,19 @@ public class Matrix {
         return result;
     }
 
-    // Add two Matrices together
-    public Matrix add(Matrix other){
+    private Matrix operation(String operation, Matrix other) {
 
-        Matrix result = newMatrix(this,other);
+        Matrix result = new Matrix();
 
-        // Add numbers and end of line zeros
+        // Apply the correct operation to each number
         for (int i = 0; i < Math.min(this.getHeight(),other.getHeight()); ++i) {
             ArrayList<Integer> row = new ArrayList<>(Math.min(this.getWidth(), other.getWidth()));
             for (int j = 0; j < result.width; ++j) {
-                row.add((this.values.get(i).get(j) + other.values.get(i).get(j)) % maximum);
+                switch (operation) {
+                    case "add" : row.add((this.values.get(i).get(j) + other.values.get(i).get(j)) % maximum); break;
+                    case "sub" : row.add(Math.floorMod(this.values.get(i).get(j) - other.values.get(i).get(j),maximum));
+                    case "mul" : row.add((this.values.get(i).get(j) * other.values.get(i).get(j)) % maximum);
+                }
             }
             result.values.add(row);
         }
@@ -144,10 +147,22 @@ public class Matrix {
         return result;
     }
 
+    // Add two Matrices together
+    public Matrix add(Matrix other){
+
+        Matrix result = newMatrix(this,other);
+
+        result = result.operation("add",other);
+
+        return result;
+    }
+
     // Subtract a Matrix from another
     public Matrix subtract(Matrix other){
 
         Matrix result = new Matrix();
+
+        result = result.operation("sub",other);
 
         return result;
     }
@@ -156,6 +171,8 @@ public class Matrix {
     public Matrix multiply(Matrix other){
 
         Matrix result = new Matrix();
+
+        result = result.operation("mul",other);
 
         return result;
     }
