@@ -83,9 +83,29 @@ public class Matrix {
     }
 
     // Replace the excess numbers with zeros
-    private Matrix replaceWithZeros(Matrix matrix) {
+    private Matrix replaceWithZeros(int heightDifference, int widthDifference) {
 
         Matrix result = new Matrix();
+
+        // Add zeros to end of rows and adjust matrix width
+        for (ArrayList<Integer> row : this.values) {
+            for(int i = 0; i < widthDifference; ++i) {
+                row.add(0);
+                result.setWidth(this.getWidth() + 1);
+            }
+            result.values.add(row);
+        }
+
+        // Create a row of zeros
+        ArrayList<Integer> zeros = new ArrayList<>(this.width);
+        for (int j = 0; j < this.width; j++) {
+            zeros.add(0);
+        }
+        // Add rows of zeros and adjust matrix height
+        for (int k = 0; k < heightDifference; ++k) {
+            result.values.add(zeros);
+            result.setHeight(result.getHeight() + 1);
+        }
 
         return result;
     }
@@ -112,29 +132,14 @@ public class Matrix {
         // Add numbers and end of line zeros
         for (int i = 0; i < Math.min(this.getHeight(),other.getHeight()); ++i) {
             ArrayList<Integer> row = new ArrayList<>(Math.min(this.getWidth(), other.getWidth()));
-            for (int j = 0; j < row.size(); ++j) {
+            for (int j = 0; j < result.width; ++j) {
                 row.add((this.values.get(i).get(j) + other.values.get(i).get(j)) % maximum);
-            }
-            // Add the extra zeros to the end of the lines
-            for (int k = row.size(); k < Math.max(this.getWidth(), other.getWidth()); ++k) {
-                row.add(0);
             }
             result.values.add(row);
         }
 
-
-        // IL FAUDRA FAIRE UNE FONCTION QUE POUR CA (ADD ZEROS COMME HAUT DESSUS)
-
-        // Create a row of zeros
-        ArrayList<Integer> zeros = new ArrayList<>(Math.min(this.getWidth(), other.getWidth()));
-        for (int i = 0; i < zeros.size(); i++) {
-            zeros.add(0);
-        }
-        // Add rows of zeros
-        for (int l = 0; l < (result.getHeight() - Math.min(this.getHeight(),other.getHeight())); ++l) {
-            result.values.add(zeros);
-        }
-
+        // Place zeros in the correct spaces by passing the height and width differences
+        result = result.replaceWithZeros(Math.abs(this.getHeight() - other.getHeight()),Math.abs(this.getWidth() - other.getWidth()));
 
         return result;
     }
