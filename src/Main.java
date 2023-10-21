@@ -1,63 +1,40 @@
 package src;
 
-import java.util.ArrayList;
+import src.matrix.Matrix;
+import src.matrix.operations.*;
 
 public class Main {
-
     public static void main(String[] args) {
+        int modulus = 5;
+        Matrix m1 = new Matrix(3, 4, modulus, new int[][]{
+                {1, 3, 1, 1},
+                {3, 2, 4, 2},
+                {1, 0, 1, 0}
+        });
+        Matrix m2 = new Matrix(3, 5, modulus, new int[][]{
+                {1, 4, 2, 3, 2},
+                {0, 1, 0, 4, 2},
+                {0, 0, 2, 0, 2},
+        });
 
-        ArrayList<ArrayList<Integer>> one = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> two = new ArrayList<>();
+        System.out.println("The modulus is " + modulus);
+        System.out.println("one:");
+        System.out.println(m1);
 
-        for(int i = 0; i < 3; ++i) {
-            one.add(new ArrayList<>());
-            two.add(new ArrayList<>());
+        System.out.println("two:");
+        System.out.println(m2);
+
+        Matrix result;
+        Operation[] operations = new Operation[]{
+                new Addition(),
+                new Subtraction(),
+                new Multiplication()
+        };
+
+        for (Operation operation : operations) {
+            System.out.println("one " + operation + " two:");
+            result = m1.calculate(m2, operation);
+            System.out.println(result);
         }
-
-        // Add numbers to first matrix
-        one.get(0).add(1);
-        one.get(0).add(3);
-        one.get(0).add(1);
-        one.get(0).add(1);
-
-        one.get(1).add(3);
-        one.get(1).add(2);
-        one.get(1).add(4);
-        one.get(1).add(2);
-
-        one.get(2).add(1);
-        one.get(2).add(0);
-        one.get(2).add(1);
-        one.get(2).add(0);
-
-        // Add numbers to second matrix
-        two.get(0).add(1);
-        two.get(0).add(4);
-        two.get(0).add(2);
-        two.get(0).add(3);
-        two.get(0).add(2);
-
-        two.get(1).add(0);
-        two.get(1).add(1);
-        two.get(1).add(0);
-        two.get(1).add(4);
-        two.get(1).add(2);
-
-        two.get(2).add(0);
-        two.get(2).add(0);
-        two.get(2).add(2);
-        two.get(2).add(0);
-        two.get(2).add(2);
-
-        Matrix matrix1 = new Matrix(3, 3, 5, one);
-        Matrix matrix2 = new Matrix(4, 3, 5, two);
-
-        System.out.println(matrix1);
-        System.out.println(matrix2);
-
-        System.out.println(matrix1.add(matrix2));
-        System.out.println(matrix1.subtract(matrix2));
-        System.out.println(matrix1.multiply(matrix2));
-
     }
 }
