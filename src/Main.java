@@ -3,6 +3,10 @@ package src;
 import src.matrix.Matrix;
 import src.matrix.operations.*;
 
+/**
+ * @author Calum Quinn
+ * @author Dylan Ramos
+ */
 public class Main {
     public static void main(String[] args) {
         int modulus = 5;
@@ -24,7 +28,6 @@ public class Main {
         System.out.println("two:");
         System.out.println(m2);
 
-        Matrix result;
         Operation[] operations = new Operation[]{
                 new Addition(),
                 new Subtraction(),
@@ -33,8 +36,7 @@ public class Main {
 
         for (Operation operation : operations) {
             System.out.println("one " + operation + " two:");
-            result = m1.calculate(m2, operation);
-            System.out.println(result);
+            System.out.println(m1.calculate(m2, operation));
         }
     }
 }
