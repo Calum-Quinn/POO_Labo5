@@ -105,7 +105,6 @@ public class Matrix {
 
         int maxHeight = Math.max(this.height, other.height);
         int maxWidth = Math.max(this.width, other.width);
-        int newModulus = 1;
         int[][] newValues = new int[maxHeight][maxWidth];
 
         for (int i = 0; i < maxHeight; ++i) {
@@ -123,15 +122,10 @@ public class Matrix {
 
                 int result = operation.calculate(op1, op2);
                 newValues[i][j] = Math.floorMod(result, this.modulus);
-
-                // We must keep track of the highest value in the matrix
-                if (result > newModulus) {
-                    newModulus = result;
-                }
             }
         }
 
-        // Returns the new matrix. Note that the modulus is incremented by 1 because values are from 0 to modulus - 1
-        return new Matrix(maxHeight, maxWidth, newModulus + 1, newValues);
+        // Returns the new matrix with the same modulus
+        return new Matrix(maxHeight, maxWidth, this.modulus, newValues);
     }
 }
