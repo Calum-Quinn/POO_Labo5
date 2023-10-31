@@ -30,6 +30,7 @@ Il faut:
 
 1. Implémenter cette classe.
 2. Ecrire un programme de test prenant en argument les tailles N1, M1, N2, M2 de deux matrices ainsi qu'un module n et effectuant les opérations sur une matrice N1 × M1 et N2 × M2 de manière à produire un résultat semblable à
+
 The modulus is 5
 
 one:
