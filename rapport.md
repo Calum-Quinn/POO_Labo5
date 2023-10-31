@@ -2,7 +2,7 @@
 
 - Groupe: L05GrK
 - Etudiants: Calum Quinn, Dylan Ramos
-- Date de dernière modification: 23.10.2023
+- Date de dernière modification: 31.10.2023
 
 ## 1. Modélisation UML
 
@@ -37,3 +37,5 @@ l'opération à effectuer"*.
 
 Nous avons testé chaque contrainte d'intégrité du diagramme UML manuellement. Pour chacune des contraintes, nous avons 
 à chaque fois une `RuntimeException` qui est levée lors d'une erreur, comme demandé dans l'énoncé.
+
+Nous avons également une classe `Test` qui permet de reproduire le même résultat que sur la donnée en passant des valeurs spécifiques.
