@@ -57,8 +57,8 @@ public class Matrix {
 
     // Checks that we can create a matrix with the given parameters
     private void checkConstructorParams(int height, int width, int modulus, int[][] values) {
-        // Matrix dimensions must be positive and modulus must be greater than 0
-        if (height < 0 || width < 0 || modulus < 1) {
+        // Matrix dimensions and modulus must be greater than 0
+        if (height < 1 || width < 1 || modulus < 1) {
             throw new RuntimeException("Invalid parameters");
         }
 

@@ -9,19 +9,23 @@ import src.matrix.operations.*;
  */
 public class Main {
     public static void main(String[] args) {
-        int modulus = 5;
-        Matrix m1 = new Matrix(3, 4, modulus, new int[][]{
-                {1, 3, 1, 1},
-                {3, 2, 4, 2},
-                {1, 0, 1, 0}
-        });
-        Matrix m2 = new Matrix(3, 5, modulus, new int[][]{
-                {1, 4, 2, 3, 2},
-                {0, 1, 0, 4, 2},
-                {0, 0, 2, 0, 2},
-        });
+        // Arguments in args {N1,M1,N2,M2,mod}
+        // NX: rows in matrix x
+        // MX: columns in matrix x
+        // mod: modulus for all numbers contained in the matrices
+        if (args.length != 5) {
+            throw new RuntimeException("Invalid number of arguments passed");
+        }
 
-        System.out.println("The modulus is " + modulus);
+        Matrix m1, m2;
+        try {
+            m1 = new Matrix(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[4]));
+            m2 = new Matrix(Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Arguments must be numbers");
+        }
+
+        System.out.println("The modulus is " + args[4]);
         System.out.println("one:");
         System.out.println(m1);
 
